@@ -1,0 +1,442 @@
+<!-- =========================
+     instruction.html
+========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Instruction | Robert Simpson Golf</title>
+  <meta name="description" content="Private coaching framework for juniors, adults, and competitive players. Structured process, expected outcomes, and booking integration placeholder." />
+
+  <style>
+    :root{
+      --navy-950:#071225;
+      --navy-900:#0a1a33;
+      --line:rgba(255,255,255,.10);
+      --accent:#7db6ff;
+      --accent2:#a9d0ff;
+      --white:#ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:28px;
+      --max:1180px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+      color:var(--white);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(125,182,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(125,182,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--navy-950), var(--navy-900) 55%, #06101f 100%);
+      line-height:1.45;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(7,18,37,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:220px; }
+    .mark{
+      width:40px; height:40px; border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(125,182,255,.9), rgba(125,182,255,.18));
+      box-shadow: 0 12px 30px rgba(125,182,255,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand b{ letter-spacing:.5px; font-size:14px; text-transform:uppercase; }
+    .brand span{ display:block; font-size:12px; color:rgba(255,255,255,.72); margin-top:1px; }
+
+    nav ul{ list-style:none; display:flex; gap:18px; padding:0; margin:0; align-items:center; }
+    nav a{
+      font-size:13px; color:rgba(255,255,255,.80);
+      padding:10px 10px; border-radius:12px;
+      transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+    }
+    nav a:hover{ background:rgba(255,255,255,.06); color:#fff; transform: translateY(-1px); }
+    .active{ background:rgba(125,182,255,.12) !important; color:#fff !important; border:1px solid rgba(125,182,255,.20); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px; border-radius:14px;
+      font-weight:650; font-size:13px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(125,182,255,.95), rgba(125,182,255,.35));
+      border-color: rgba(125,182,255,.55);
+      box-shadow: 0 18px 40px rgba(125,182,255,.20);
+      color:#071225;
+    }
+    .menu-toggle{ display:none; }
+    @media (max-width: 980px){
+      nav ul{ display:none; }
+      .menu-toggle{ display:inline-flex; }
+    }
+
+    main{ padding:56px 0 34px; }
+
+    .top{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      letter-spacing:-.6px;
+      line-height:1.08;
+    }
+    .sub{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.80);
+      max-width: 78ch;
+      font-size:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
+
+    .card{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.18);
+      transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: rgba(125,182,255,.22); background: rgba(255,255,255,.06); }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,18,37,.40);
+      width: fit-content;
+    }
+    .badge i{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(125,182,255,.10);
+    }
+
+    .card h2{ margin:0; font-size:18px; letter-spacing:-.3px; }
+    .card p{ margin:0; color: rgba(255,255,255,.78); font-size:13.5px; }
+
+    .cols{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 560px){ .cols{ grid-template-columns: 1fr; } }
+
+    .mini{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,18,37,.34);
+      padding:12px;
+    }
+    .mini b{ display:block; font-size:12.5px; color:#fff; margin-bottom:6px; }
+    .mini span{ display:block; color: rgba(255,255,255,.74); font-size:12.8px; }
+
+    .actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      padding-top:10px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .embed{
+      margin-top:18px;
+      border-radius: var(--radius2);
+      border:1px solid rgba(125,182,255,.22);
+      background:
+        radial-gradient(900px 380px at 15% 30%, rgba(125,182,255,.16), transparent 60%),
+        linear-gradient(180deg, rgba(125,182,255,.10), rgba(255,255,255,.03));
+      padding:18px;
+    }
+    .embed h3{ margin:0; font-size:18px; letter-spacing:-.2px; }
+    .embed p{ margin:8px 0 0; color: rgba(255,255,255,.80); font-size:13.5px; max-width: 85ch; }
+
+    .embed-box{
+      margin-top:14px;
+      border-radius: 18px;
+      border:1px dashed rgba(255,255,255,.22);
+      background: rgba(7,18,37,.35);
+      min-height: 170px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:16px;
+      color: rgba(255,255,255,.74);
+      font-size:13px;
+    }
+    .embed-box code{
+      display:inline-block;
+      margin-top:10px;
+      padding:8px 10px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(255,255,255,.86);
+      font-size:12px;
+      max-width: 100%;
+      overflow:auto;
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding:26px 0;
+      color: rgba(255,255,255,.72);
+      font-size:12.5px;
+    }
+    .foot{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+    .foot a{ color: rgba(255,255,255,.74); }
+    .foot a:hover{ color:#fff; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Robert Simpson Golf Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <b>Robert Simpson Golf</b>
+            <span>High-Performance Player Development</span>
+          </div>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a class="active" href="instruction.html">Instruction</a></li>
+            <li><a href="academy.html">SGCC Academy</a></li>
+            <li><a href="tga.html">TGA of Fairfax</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn menu-toggle" href="contact.html">Menu</a>
+          <a class="btn primary" href="contact.html">Book</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <h1>Private Coaching Framework</h1>
+          <p class="sub">
+            Coaching is built around a structured process: establish baselines, define the shot pattern, apply targeted interventions, and verify transfer on the course. Every track includes measurable checkpoints and a clear next step.
+          </p>
+        </div>
+        <a class="btn primary" href="contact.html">Book a Lesson</a>
+      </div>
+
+      <div class="grid" aria-label="Instruction offerings">
+        <!-- Junior -->
+        <article class="card">
+          <div class="badge"><i></i>Junior Development Model</div>
+          <h2>Junior Development Model</h2>
+          <p>Designed to build athletic foundations, resilient technique, and confidence—while keeping progress measurable and age-appropriate.</p>
+
+          <div class="cols">
+            <div class="mini"><b>Who it’s for</b><span>Beginners through competitive juniors; families seeking a clear pathway.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Stronger fundamentals, consistent contact, and a clear progression plan.</span></div>
+            <div class="mini"><b>Structured process</b><span>Skill benchmarks → training blocks → progress reviews → pathway placement.</span></div>
+            <div class="mini"><b>Focus points</b><span>Movement, ball flight control, scoring skills, competitive routines.</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Book Junior Session</a>
+            <a class="btn" href="academy.html">View Academy Levels</a>
+          </div>
+        </article>
+
+        <!-- Adult -->
+        <article class="card">
+          <div class="badge"><i></i>Adult Performance Coaching</div>
+          <h2>Adult Performance Coaching</h2>
+          <p>For players who want a repeatable pattern and a scoring model that translates to the course—without guesswork.</p>
+
+          <div class="cols">
+            <div class="mini"><b>Who it’s for</b><span>Committed recreational golfers and competitive amateurs.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>More predictable ball flight and improved scoring decisions.</span></div>
+            <div class="mini"><b>Structured process</b><span>Shot pattern audit → root cause diagnosis → drills → on-course verification.</span></div>
+            <div class="mini"><b>Focus points</b><span>Start line, curvature control, wedge benchmarks, putting routines.</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Book Adult Session</a>
+            <a class="btn" href="contact.html">Request a Consultation</a>
+          </div>
+        </article>
+
+        <!-- High Performance -->
+        <article class="card">
+          <div class="badge"><i></i>High Performance Training</div>
+          <h2>High Performance Training</h2>
+          <p>Optimization for competitive players: speed, pressure training, and technical refinement aligned to performance goals.</p>
+
+          <div class="cols">
+            <div class="mini"><b>Who it’s for</b><span>High school, tournament juniors, and serious competitors.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>More distance with control, better scoring under pressure, stronger routines.</span></div>
+            <div class="mini"><b>Structured process</b><span>Testing → training blocks → performance review → tournament plan.</span></div>
+            <div class="mini"><b>Focus points</b><span>Speed protocols, dispersion, decision-making, resilience, prep.</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Book Performance Block</a>
+            <a class="btn" href="academy.html">SGCC High School Track</a>
+          </div>
+        </article>
+
+        <!-- On-Course -->
+        <article class="card">
+          <div class="badge"><i></i>On-Course Strategy Coaching</div>
+          <h2>On-Course Strategy Coaching</h2>
+          <p>Because scoring is a skill. Train decisions, targets, and routines where performance actually happens.</p>
+
+          <div class="cols">
+            <div class="mini"><b>Who it’s for</b><span>Players who practice well but don’t score to capability.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Better target selection, fewer big numbers, stronger conversion.</span></div>
+            <div class="mini"><b>Structured process</b><span>Dispersion mapping → shot selection rules → review of outcomes.</span></div>
+            <div class="mini"><b>Focus points</b><span>Approach strategy, wedge decisions, risk profile, routines.</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Book On-Course</a>
+            <a class="btn" href="contact.html">Ask About Packages</a>
+          </div>
+        </article>
+
+        <!-- Winter -->
+        <article class="card">
+          <div class="badge"><i></i>Winter Indoor Performance Programs</div>
+          <h2>Winter Indoor Performance Programs</h2>
+          <p>Structured off-season development: maintain feel, build speed, and refine scoring skills through measurable training blocks.</p>
+
+          <div class="cols">
+            <div class="mini"><b>Who it’s for</b><span>Juniors and adults seeking momentum through the off-season.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Cleaner contact, improved speed metrics, better spring readiness.</span></div>
+            <div class="mini"><b>Structured process</b><span>Baseline testing → weekly plan → checkpoints → transition plan.</span></div>
+            <div class="mini"><b>Focus points</b><span>Speed, strike, start-line control, wedge/putt skills.</span></div>
+          </div>
+
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Book Winter Program</a>
+            <a class="btn" href="academy.html">View Seasonal Programming</a>
+          </div>
+        </article>
+
+        <!-- Placeholder for additional -->
+        <article class="card">
+          <div class="badge"><i></i>Structured Development</div>
+          <h2>What You Can Expect</h2>
+          <p>Every plan is built to reduce noise and increase clarity—so you leave each session knowing exactly what matters and how to train it.</p>
+          <div class="cols">
+            <div class="mini"><b>Baseline</b><span>Identify current pattern + scoring profile.</span></div>
+            <div class="mini"><b>Plan</b><span>Define the training block with priorities.</span></div>
+            <div class="mini"><b>Training</b><span>High-quality reps with clear intent.</span></div>
+            <div class="mini"><b>Transfer</b><span>Verify performance in real conditions.</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="contact.html">Start Here</a>
+            <a class="btn" href="about.html">View Credentials</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Booking Integration Placeholder -->
+      <section class="embed" aria-label="Booking integration">
+        <h3>Booking Integration</h3>
+        <p>
+          Insert your booking platform embed here. This section is compatible with Calendly, Square, Golf Genius, or a custom scheduling widget.
+        </p>
+        <div class="embed-box">
+          <div>
+            <div style="font-weight:750; color:#fff;">Embed Placeholder</div>
+            <div style="margin-top:6px;">Paste your platform script / iframe in this container.</div>
+            <code>&lt;!-- Example: &lt;iframe src="YOUR-BOOKING-LINK"&gt;&lt;/iframe&gt; --&gt;</code>
+          </div>
+        </div>
+        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="contact.html">Book Now</a>
+          <a class="btn" href="contact.html">Request Availability</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:11px;"></div>
+          <div>
+            <div style="font-weight:750; letter-spacing:.4px; text-transform:uppercase; font-size:12px; color:#fff;">Robert Simpson Golf</div>
+            <div style="margin-top:2px;">Structured coaching • Measurable checkpoints • Performance transfer</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:22px; flex-wrap:wrap;">
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Explore</div>
+            <div><a href="academy.html">SGCC Academy</a></div>
+            <div><a href="tga.html">TGA of Fairfax</a></div>
+          </div>
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Connect</div>
+            <div><a href="contact.html">Book / Contact</a></div>
+            <div><a href="index.html">Home</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.08); padding-top:14px;">
+        <div>© <span id="y"></span> robertsimpsongolf.com</div>
+        <div style="color:rgba(255,255,255,.62);">Private academy standards • Professional execution</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
