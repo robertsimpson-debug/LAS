@@ -1,5 +1,8 @@
 <!-- =========================
-     instruction.html
+     instruction.html (Updated for Robert Simpson)
+     - Adds real offer: 30 and 45 minute lessons
+     - No packages (seasonal player development programs instead)
+     - Fixes mobile menu with a real dropdown
 ========================= -->
 <!doctype html>
 <html lang="en">
@@ -7,7 +10,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Instruction | Robert Simpson Golf</title>
-  <meta name="description" content="Private coaching framework for juniors, adults, and competitive players. Structured process, expected outcomes, and booking integration placeholder." />
+  <meta name="description" content="Private lessons at Springfield Golf & Country Club. Junior development, adult coaching, high performance, and on-course coaching. 30 and 45 minute options." />
 
   <style>
     :root{
@@ -15,7 +18,6 @@
       --navy-900:#0a1a33;
       --line:rgba(255,255,255,.10);
       --accent:#7db6ff;
-      --accent2:#a9d0ff;
       --white:#ffffff;
       --shadow: 0 20px 60px rgba(0,0,0,.35);
       --radius:18px;
@@ -73,6 +75,7 @@
       background: rgba(255,255,255,.06);
       transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
       white-space:nowrap;
+      cursor:pointer;
     }
     .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
     .btn.primary{
@@ -81,10 +84,28 @@
       box-shadow: 0 18px 40px rgba(125,182,255,.20);
       color:#071225;
     }
+
+    /* Mobile menu */
     .menu-toggle{ display:none; }
+    .mobile-nav{
+      display:none;
+      border-top:1px solid rgba(255,255,255,.08);
+      padding:12px 0 16px;
+    }
+    .mobile-nav a{
+      display:block;
+      padding:10px 12px;
+      border-radius:12px;
+      color:rgba(255,255,255,.86);
+      font-size:13px;
+    }
+    .mobile-nav a:hover{ background:rgba(255,255,255,.06); }
+    .mobile-nav .active{ display:block; }
+
     @media (max-width: 980px){
       nav ul{ display:none; }
       .menu-toggle{ display:inline-flex; }
+      .mobile-nav[data-open="true"]{ display:block; }
     }
 
     main{ padding:56px 0 34px; }
@@ -104,6 +125,30 @@
       color:rgba(255,255,255,.80);
       max-width: 78ch;
       font-size:14px;
+    }
+
+    .info-strip{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 11px;
+      border-radius: 999px;
+      font-size:12px;
+      color: rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(7,18,37,.38);
+    }
+    .chip i{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(125,182,255,.10);
     }
 
     .grid{
@@ -224,6 +269,17 @@
     .foot{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
     .foot a{ color: rgba(255,255,255,.74); }
     .foot a:hover{ color:#fff; }
+
+    /* Accessibility helper */
+    .sr-only{
+      position:absolute;
+      width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      white-space:nowrap;
+      border:0;
+    }
   </style>
 </head>
 
@@ -251,9 +307,21 @@
         </nav>
 
         <div style="display:flex; gap:10px; align-items:center;">
-          <a class="btn menu-toggle" href="contact.html">Menu</a>
+          <button class="btn menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav">
+            Menu
+          </button>
           <a class="btn primary" href="contact.html">Book</a>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-nav" id="mobileNav" data-open="false" aria-label="Mobile navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="instruction.html">Instruction</a>
+        <a href="academy.html">SGCC Academy</a>
+        <a href="tga.html">TGA of Fairfax</a>
+        <a href="contact.html">Contact</a>
       </div>
     </div>
   </header>
@@ -262,11 +330,19 @@
     <div class="wrap">
       <div class="top">
         <div>
-          <h1>Private Coaching Framework</h1>
+          <h1>Private Instruction at SGCC</h1>
           <p class="sub">
-            Coaching is built around a structured process: establish baselines, define the shot pattern, apply targeted interventions, and verify transfer on the course. Every track includes measurable checkpoints and a clear next step.
+            Coaching is built around one goal, help you improve on the course. We start with a baseline, identify your shot pattern, build a simple plan, and track progress with checkpoints. Juniors move through clear levels. Adults follow a repeatable process that holds up under pressure.
           </p>
+
+          <div class="info-strip" aria-label="Lesson details">
+            <div class="chip"><i aria-hidden="true"></i><span><b>Lesson options:</b> 30 minutes, 45 minutes</span></div>
+            <div class="chip"><i aria-hidden="true"></i><span><b>Packages:</b> Not offered</span></div>
+            <div class="chip"><i aria-hidden="true"></i><span><b>Programs:</b> Seasonal player development blocks</span></div>
+            <div class="chip"><i aria-hidden="true"></i><span><b>Location:</b> Springfield Golf & Country Club</span></div>
+          </div>
         </div>
+
         <a class="btn primary" href="contact.html">Book a Lesson</a>
       </div>
 
@@ -275,107 +351,119 @@
         <article class="card">
           <div class="badge"><i></i>Junior Development Model</div>
           <h2>Junior Development Model</h2>
-          <p>Designed to build athletic foundations, resilient technique, and confidence—while keeping progress measurable and age-appropriate.</p>
+          <p>
+            Juniors develop faster when the pathway is clear. Coaching is built around skill benchmarks, on-course testing, and a progression that connects instruction to competition, PGA Junior League, and high school golf.
+          </p>
 
           <div class="cols">
-            <div class="mini"><b>Who it’s for</b><span>Beginners through competitive juniors; families seeking a clear pathway.</span></div>
-            <div class="mini"><b>Expected outcome</b><span>Stronger fundamentals, consistent contact, and a clear progression plan.</span></div>
-            <div class="mini"><b>Structured process</b><span>Skill benchmarks → training blocks → progress reviews → pathway placement.</span></div>
-            <div class="mini"><b>Focus points</b><span>Movement, ball flight control, scoring skills, competitive routines.</span></div>
+            <div class="mini"><b>Who it’s for</b><span>Ages 6–17. New players through competitive juniors. Families who want structure and a plan.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Better contact, more control, stronger scoring skills, and a clear next step in the pathway.</span></div>
+            <div class="mini"><b>Structured process</b><span>Baseline assessment → level placement (101/202/303) → training blocks → retest and progression.</span></div>
+            <div class="mini"><b>Focus points</b><span>Ball flight basics, wedge distance control, short game scoring, course routines, competitive readiness.</span></div>
           </div>
 
           <div class="actions">
-            <a class="btn primary" href="contact.html">Book Junior Session</a>
-            <a class="btn" href="academy.html">View Academy Levels</a>
+            <a class="btn primary" href="contact.html">Book Junior Lesson</a>
+            <a class="btn" href="academy.html">View SGCC Junior Pathway</a>
           </div>
         </article>
 
         <!-- Adult -->
         <article class="card">
-          <div class="badge"><i></i>Adult Performance Coaching</div>
-          <h2>Adult Performance Coaching</h2>
-          <p>For players who want a repeatable pattern and a scoring model that translates to the course—without guesswork.</p>
+          <div class="badge"><i></i>Adult Coaching</div>
+          <h2>Adult Coaching</h2>
+          <p>
+            Most adult golfers do not need more tips. They need a repeatable pattern and a plan that translates to the course. Sessions focus on start line, curvature control, distance control, and simple scoring decisions you can trust.
+          </p>
 
           <div class="cols">
-            <div class="mini"><b>Who it’s for</b><span>Committed recreational golfers and competitive amateurs.</span></div>
-            <div class="mini"><b>Expected outcome</b><span>More predictable ball flight and improved scoring decisions.</span></div>
-            <div class="mini"><b>Structured process</b><span>Shot pattern audit → root cause diagnosis → drills → on-course verification.</span></div>
-            <div class="mini"><b>Focus points</b><span>Start line, curvature control, wedge benchmarks, putting routines.</span></div>
+            <div class="mini"><b>Who it’s for</b><span>Beginner to competitive amateur. Players who practice but want real scoring improvement.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>More predictable ball flight, tighter dispersion, improved wedges, better decisions on the course.</span></div>
+            <div class="mini"><b>Structured process</b><span>Shot pattern audit → priority fix → drills with purpose → at-home plan → progress checkpoints.</span></div>
+            <div class="mini"><b>Focus points</b><span>Start line, face-to-path, contact quality, wedge matrix, putting fundamentals, course management.</span></div>
           </div>
 
           <div class="actions">
-            <a class="btn primary" href="contact.html">Book Adult Session</a>
-            <a class="btn" href="contact.html">Request a Consultation</a>
+            <a class="btn primary" href="contact.html">Book Adult Lesson</a>
+            <a class="btn" href="contact.html">Ask About Seasonal Programs</a>
           </div>
         </article>
 
         <!-- High Performance -->
         <article class="card">
-          <div class="badge"><i></i>High Performance Training</div>
-          <h2>High Performance Training</h2>
-          <p>Optimization for competitive players: speed, pressure training, and technical refinement aligned to performance goals.</p>
+          <div class="badge"><i></i>High Performance</div>
+          <h2>High Performance</h2>
+          <p>
+            This track is for competitors. We combine testing, structured training blocks, and performance planning. The goal is simple, build a game that holds up in tournaments.
+          </p>
 
           <div class="cols">
-            <div class="mini"><b>Who it’s for</b><span>High school, tournament juniors, and serious competitors.</span></div>
-            <div class="mini"><b>Expected outcome</b><span>More distance with control, better scoring under pressure, stronger routines.</span></div>
-            <div class="mini"><b>Structured process</b><span>Testing → training blocks → performance review → tournament plan.</span></div>
-            <div class="mini"><b>Focus points</b><span>Speed protocols, dispersion, decision-making, resilience, prep.</span></div>
+            <div class="mini"><b>Who it’s for</b><span>Tournament juniors, high school players, and serious competitors.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>More distance with control, better scoring under pressure, stronger routines, smarter strategy.</span></div>
+            <div class="mini"><b>Structured process</b><span>Testing and baseline → training block plan → on-course performance sessions → tournament prep.</span></div>
+            <div class="mini"><b>Focus points</b><span>Speed development, dispersion control, wedge benchmarks, pressure games, decision rules.</span></div>
           </div>
 
           <div class="actions">
-            <a class="btn primary" href="contact.html">Book Performance Block</a>
-            <a class="btn" href="academy.html">SGCC High School Track</a>
+            <a class="btn primary" href="contact.html">Book High Performance</a>
+            <a class="btn" href="academy.html">SGCC Competitive Pathway</a>
           </div>
         </article>
 
         <!-- On-Course -->
         <article class="card">
-          <div class="badge"><i></i>On-Course Strategy Coaching</div>
-          <h2>On-Course Strategy Coaching</h2>
-          <p>Because scoring is a skill. Train decisions, targets, and routines where performance actually happens.</p>
+          <div class="badge"><i></i>On-Course Coaching</div>
+          <h2>On-Course Coaching</h2>
+          <p>
+            You can hit it great on the range and still shoot the same scores. On-course coaching builds scoring decisions, targets, and routines in real situations. This is where handicaps drop.
+          </p>
 
           <div class="cols">
-            <div class="mini"><b>Who it’s for</b><span>Players who practice well but don’t score to capability.</span></div>
-            <div class="mini"><b>Expected outcome</b><span>Better target selection, fewer big numbers, stronger conversion.</span></div>
-            <div class="mini"><b>Structured process</b><span>Dispersion mapping → shot selection rules → review of outcomes.</span></div>
-            <div class="mini"><b>Focus points</b><span>Approach strategy, wedge decisions, risk profile, routines.</span></div>
+            <div class="mini"><b>Who it’s for</b><span>Players stuck at the same scores, tournament players, and adults who want better decision-making.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Fewer big numbers, better misses, improved wedge and approach decisions, stronger confidence.</span></div>
+            <div class="mini"><b>Structured process</b><span>On-course assessment → dispersion-based targets → decision rules → post-round review.</span></div>
+            <div class="mini"><b>Focus points</b><span>Tee shot planning, approach targets, wedge choices, recovery strategy, reads and pace.</span></div>
           </div>
 
           <div class="actions">
             <a class="btn primary" href="contact.html">Book On-Course</a>
-            <a class="btn" href="contact.html">Ask About Packages</a>
+            <a class="btn" href="contact.html">Ask About Availability</a>
           </div>
         </article>
 
-        <!-- Winter -->
+        <!-- Seasonal Programs -->
         <article class="card">
-          <div class="badge"><i></i>Winter Indoor Performance Programs</div>
-          <h2>Winter Indoor Performance Programs</h2>
-          <p>Structured off-season development: maintain feel, build speed, and refine scoring skills through measurable training blocks.</p>
+          <div class="badge"><i></i>Seasonal Player Development</div>
+          <h2>Seasonal Player Development Programs</h2>
+          <p>
+            No packages. Instead, I run seasonal training blocks for juniors and adults that follow a clear progression, measurable benchmarks, and on-course transfer.
+          </p>
 
           <div class="cols">
-            <div class="mini"><b>Who it’s for</b><span>Juniors and adults seeking momentum through the off-season.</span></div>
-            <div class="mini"><b>Expected outcome</b><span>Cleaner contact, improved speed metrics, better spring readiness.</span></div>
-            <div class="mini"><b>Structured process</b><span>Baseline testing → weekly plan → checkpoints → transition plan.</span></div>
-            <div class="mini"><b>Focus points</b><span>Speed, strike, start-line control, wedge/putt skills.</span></div>
+            <div class="mini"><b>Who it’s for</b><span>Players who want structure beyond one-off lessons.</span></div>
+            <div class="mini"><b>Expected outcome</b><span>Clear direction, better practice habits, and visible improvement across the season.</span></div>
+            <div class="mini"><b>Structured process</b><span>Baseline → training plan → checkpoints → end-of-block review.</span></div>
+            <div class="mini"><b>Focus points</b><span>Scoring skills, ball flight, pressure training, course routines.</span></div>
           </div>
 
           <div class="actions">
-            <a class="btn primary" href="contact.html">Book Winter Program</a>
-            <a class="btn" href="academy.html">View Seasonal Programming</a>
+            <a class="btn primary" href="academy.html">View SGCC Programs</a>
+            <a class="btn" href="contact.html">Get Notified for Next Block</a>
           </div>
         </article>
 
-        <!-- Placeholder for additional -->
+        <!-- What to Expect -->
         <article class="card">
-          <div class="badge"><i></i>Structured Development</div>
+          <div class="badge"><i></i>What to Expect</div>
           <h2>What You Can Expect</h2>
-          <p>Every plan is built to reduce noise and increase clarity—so you leave each session knowing exactly what matters and how to train it.</p>
+          <p>
+            You will leave with clarity. What matters, what you are training, and how you will measure improvement. The goal is less noise and faster progress.
+          </p>
           <div class="cols">
-            <div class="mini"><b>Baseline</b><span>Identify current pattern + scoring profile.</span></div>
-            <div class="mini"><b>Plan</b><span>Define the training block with priorities.</span></div>
-            <div class="mini"><b>Training</b><span>High-quality reps with clear intent.</span></div>
-            <div class="mini"><b>Transfer</b><span>Verify performance in real conditions.</span></div>
+            <div class="mini"><b>Assess</b><span>Baseline skills and shot pattern. Identify what is costing you strokes.</span></div>
+            <div class="mini"><b>Prioritize</b><span>Pick the top one or two priorities that will move scoring fastest.</span></div>
+            <div class="mini"><b>Train</b><span>Drills and reps tied to ball flight and scoring. No random practice.</span></div>
+            <div class="mini"><b>Transfer</b><span>On-course verification and adjustments so results show up when it matters.</span></div>
           </div>
           <div class="actions">
             <a class="btn primary" href="contact.html">Start Here</a>
@@ -386,14 +474,14 @@
 
       <!-- Booking Integration Placeholder -->
       <section class="embed" aria-label="Booking integration">
-        <h3>Booking Integration</h3>
+        <h3>Book a Lesson</h3>
         <p>
-          Insert your booking platform embed here. This section is compatible with Calendly, Square, Golf Genius, or a custom scheduling widget.
+          Add your scheduling embed here so players can book without back-and-forth emails. Use Calendly, Square Appointments, Golf Genius, or your preferred platform.
         </p>
         <div class="embed-box">
           <div>
             <div style="font-weight:750; color:#fff;">Embed Placeholder</div>
-            <div style="margin-top:6px;">Paste your platform script / iframe in this container.</div>
+            <div style="margin-top:6px;">Paste your platform script or iframe in this container.</div>
             <code>&lt;!-- Example: &lt;iframe src="YOUR-BOOKING-LINK"&gt;&lt;/iframe&gt; --&gt;</code>
           </div>
         </div>
@@ -412,7 +500,7 @@
           <div class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:11px;"></div>
           <div>
             <div style="font-weight:750; letter-spacing:.4px; text-transform:uppercase; font-size:12px; color:#fff;">Robert Simpson Golf</div>
-            <div style="margin-top:2px;">Structured coaching • Measurable checkpoints • Performance transfer</div>
+            <div style="margin-top:2px;">Structured coaching, measurable checkpoints, performance transfer</div>
           </div>
         </div>
 
@@ -432,11 +520,47 @@
 
       <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.08); padding-top:14px;">
         <div>© <span id="y"></span> robertsimpsongolf.com</div>
-        <div style="color:rgba(255,255,255,.62);">Private academy standards • Professional execution</div>
+        <div style="color:rgba(255,255,255,.62);">Private academy standards, professional execution</div>
       </div>
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const panel = document.getElementById('mobileNav');
+      if(!btn || !panel) return;
+
+      function setOpen(next){
+        panel.setAttribute('data-open', next ? 'true' : 'false');
+        btn.setAttribute('aria-expanded', next ? 'true' : 'false');
+      }
+
+      btn.addEventListener('click', function(){
+        const isOpen = panel.getAttribute('data-open') === 'true';
+        setOpen(!isOpen);
+      });
+
+      // Close on link click
+      panel.addEventListener('click', function(e){
+        const t = e.target;
+        if(t && t.tagName === 'A') setOpen(false);
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') setOpen(false);
+      });
+
+      // Close if resizing up to desktop
+      window.addEventListener('resize', function(){
+        if(window.innerWidth > 980) setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
