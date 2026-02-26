@@ -1,30 +1,26 @@
 <!-- =========================
-     index.html (REBUILT: Authority + System + Proof)
+     index.html (Clean / White / JSR-simple)
 ========================= -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Robert Simpson Golf | Structured Development. Measurable Progress.</title>
-  <meta name="description" content="Structured Development. Measurable Progress. Long-Term Impact. PGA Professional and Director of Instruction at Springfield Golf & Country Club." />
+  <title>Robert Simpson Golf | Instruction</title>
+  <meta name="description" content="PGA Professional. Director of Instruction at Springfield Golf & Country Club. Book a lesson." />
 
   <style>
     :root{
-      --navy-950:#071225;
-      --navy-900:#0a1a33;
       --ink:#0b1220;
       --muted:#5c6b84;
-      --line:rgba(255,255,255,.10);
-      --card:rgba(255,255,255,.06);
-      --card2:rgba(255,255,255,.04);
-      --accent:#7db6ff;
-      --accent2:#a9d0ff;
-      --white:#ffffff;
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius:18px;
-      --radius2:28px;
-      --max:1180px;
+      --line:rgba(11,18,32,.10);
+      --bg:#ffffff;
+      --bg2:#f6f8fb;
+      --navy:#0a1a33;          /* used sparingly */
+      --accent:#1f6feb;        /* subtle link / button */
+      --accentSoft:rgba(31,111,235,.10);
+      --radius:16px;
+      --max:1080px;
       --ease:cubic-bezier(.2,.8,.2,1);
     }
 
@@ -33,732 +29,510 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
-      color:var(--white);
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(125,182,255,.18), transparent 55%),
-        radial-gradient(900px 500px at 90% 0%, rgba(125,182,255,.12), transparent 55%),
-        linear-gradient(180deg, var(--navy-950), var(--navy-900) 55%, #06101f 100%);
-      line-height:1.45;
+      color:var(--ink);
+      background: var(--bg);
+      line-height:1.5;
     }
+
     a{ color:inherit; text-decoration:none; }
-    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+    .wrap{ width:min(var(--max), calc(100% - 44px)); margin:0 auto; }
 
     /* Header */
     header{
-      position:sticky; top:0; z-index:30;
+      position:sticky;
+      top:0;
+      z-index:50;
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(10px);
-      background: rgba(7,18,37,.72);
       border-bottom:1px solid var(--line);
     }
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px 0;
-      gap:16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      padding:14px 0;
     }
+
     .brand{
-      display:flex; align-items:center; gap:12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
       min-width:220px;
     }
-    .mark{
-      width:40px; height:40px; border-radius:12px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-        linear-gradient(135deg, rgba(125,182,255,.9), rgba(125,182,255,.18));
-      box-shadow: 0 12px 30px rgba(125,182,255,.18);
-      border:1px solid rgba(255,255,255,.12);
+    .logos{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
-    .brand b{ letter-spacing:.5px; font-size:14px; text-transform:uppercase; }
-    .brand span{ display:block; font-size:12px; color:rgba(255,255,255,.72); margin-top:1px; }
-
-    nav ul{ list-style:none; display:flex; gap:18px; padding:0; margin:0; align-items:center; }
-    nav a{
-      font-size:13px; color:rgba(255,255,255,.80);
-      padding:10px 10px; border-radius:12px;
-      transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+    .logos img{
+      height:30px;
+      width:auto;
+      display:block;
     }
-    nav a:hover{ background:rgba(255,255,255,.06); color:#fff; transform: translateY(-1px); }
-    .active{ background:rgba(125,182,255,.12) !important; color:#fff !important; border:1px solid rgba(125,182,255,.20); }
-
-    .nav-cta{ display:flex; gap:10px; align-items:center; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:11px 14px;
-      border-radius:14px;
-      font-weight:650;
-      letter-spacing:.2px;
+    .brand-text b{
+      display:block;
       font-size:13px;
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+      letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+    .brand-text span{
+      display:block;
+      margin-top:2px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    nav ul{
+      list-style:none;
+      display:flex;
+      gap:18px;
+      padding:0;
+      margin:0;
+      align-items:center;
+    }
+    nav a{
+      font-size:13px;
+      color:rgba(11,18,32,.78);
+      padding:10px 10px;
+      border-radius:12px;
+      transition: background .2s var(--ease), color .2s var(--ease);
+    }
+    nav a:hover{
+      background: rgba(11,18,32,.04);
+      color: var(--ink);
+    }
+    nav a.active{
+      color: var(--ink);
+      background: rgba(11,18,32,.05);
+    }
+
+    .cta{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(11,18,32,.12);
+      background: #fff;
+      font-weight:650;
+      font-size:13px;
       cursor:pointer;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
       white-space:nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(125,182,255,.95), rgba(125,182,255,.35));
-      border-color: rgba(125,182,255,.55);
-      box-shadow: 0 18px 40px rgba(125,182,255,.20);
-      color:#071225;
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(11,18,32,.18);
+      box-shadow: 0 10px 26px rgba(11,18,32,.08);
     }
-    .btn.primary:hover{ box-shadow: 0 22px 55px rgba(125,182,255,.28); }
-    .btn.ghost{ background: rgba(255,255,255,.02); }
+    .btn.primary{
+      border-color: rgba(31,111,235,.28);
+      background: var(--accent);
+      color:#fff;
+      box-shadow: 0 10px 26px rgba(31,111,235,.18);
+    }
+    .btn.primary:hover{
+      box-shadow: 0 14px 34px rgba(31,111,235,.22);
+    }
 
-    /* Mobile nav */
+    /* Mobile */
     .menu-toggle{ display:none; }
-    @media (max-width: 980px){
+    @media (max-width: 920px){
       nav ul{ display:none; }
       .menu-toggle{ display:inline-flex; }
     }
 
-    /* Hero */
-    .hero{ padding:64px 0 22px; }
-    .hero-grid{
+    /* Main */
+    main{ padding:54px 0 24px; }
+    .hero{
       display:grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap:22px;
-      align-items:stretch;
+      grid-template-columns: 1.05fr .95fr;
+      gap:34px;
+      align-items:start;
+      padding:24px 0 56px;
     }
-    .hero h1{
-      margin:0;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height:1.06;
-      letter-spacing:-.6px;
-    }
-    .hero p.lede{
-      margin:14px 0 0;
-      font-size: clamp(15px, 1.5vw, 18px);
-      color:rgba(255,255,255,.82);
-      max-width: 64ch;
-    }
-    .hero .meta{
-      margin-top:16px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      color:rgba(255,255,255,.88);
+
+    .kicker{
       font-size:12px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: var(--muted);
+      margin:0 0 10px;
     }
-    .pill i{
-      width:8px; height:8px; border-radius:999px;
+    h1{
+      margin:0;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.6px;
+      color: var(--ink);
+    }
+    .lede{
+      margin:14px 0 0;
+      font-size:16.5px;
+      color: rgba(11,18,32,.72);
+      max-width: 62ch;
+    }
+
+    .proof{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(11,18,32,.02);
+      font-size:12.5px;
+      color: rgba(11,18,32,.74);
+    }
+    .dot{
+      width:7px;
+      height:7px;
+      border-radius:999px;
       background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(125,182,255,.12);
+      box-shadow: 0 0 0 6px var(--accentSoft);
     }
+
     .hero-actions{
-      margin-top:22px;
+      margin-top:18px;
       display:flex;
       gap:10px;
       flex-wrap:wrap;
+      align-items:center;
     }
-
-    .hero-card{
-      border-radius: var(--radius2);
-      background:
-        radial-gradient(800px 400px at 10% 15%, rgba(125,182,255,.16), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      padding:18px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      min-height: 320px;
-    }
-    .kpi{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .tile{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(7,18,37,.40);
-    }
-    .tile b{ display:block; font-size:18px; letter-spacing:-.2px; }
-    .tile span{ display:block; margin-top:4px; font-size:12px; color:rgba(255,255,255,.74); }
-    .note{
-      padding:14px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.88);
-      font-size:13px;
-    }
-    .note b{ color:#fff; }
-
-    /* Authority strip */
-    .strip{
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-    }
-    .strip-grid{
-      display:grid;
-      grid-template-columns: repeat(6, minmax(0,1fr));
-      gap:12px;
-      padding:18px 0;
-    }
-    .strip-item{
-      padding:12px 12px;
-      border-radius:16px;
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.08);
-      min-height: 56px;
-      display:flex; align-items:center;
-      color: rgba(255,255,255,.86);
+    .micro{
+      margin-top:12px;
       font-size:12.5px;
-      line-height:1.2;
+      color: rgba(11,18,32,.62);
     }
-    .strip-item strong{ color:#fff; font-weight:720; }
-
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .strip-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .micro a{
+      color: var(--accent);
+      border-bottom:1px solid rgba(31,111,235,.25);
     }
-    @media (max-width: 520px){
-      .strip-grid{ grid-template-columns: 1fr; }
+    .micro a:hover{
+      border-bottom-color: rgba(31,111,235,.55);
     }
 
-    /* Section base */
-    section{ padding:44px 0; }
+    /* Right side: photo */
+    .portrait{
+      border-radius: 22px;
+      border:1px solid rgba(11,18,32,.10);
+      background: #fff;
+      overflow:hidden;
+      box-shadow: 0 18px 60px rgba(11,18,32,.10);
+    }
+    .portrait img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .caption{
+      padding:14px 16px;
+      border-top:1px solid rgba(11,18,32,.08);
+      background: rgba(11,18,32,.02);
+      font-size:12.5px;
+      color: rgba(11,18,32,.68);
+    }
+    .caption b{ color: var(--ink); }
+
+    /* Simple sections */
+    section{
+      padding:44px 0;
+      border-top:1px solid rgba(11,18,32,.08);
+    }
     .section-head{
-      display:flex; align-items:flex-end; justify-content:space-between;
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
       gap:16px;
       margin-bottom:16px;
     }
     .section-head h2{
       margin:0;
-      font-size: clamp(22px, 2.6vw, 34px);
-      letter-spacing:-.4px;
+      font-size:22px;
+      letter-spacing:-.3px;
     }
     .section-head p{
       margin:0;
-      max-width: 72ch;
-      color: rgba(255,255,255,.78);
-      font-size: 13.5px;
+      max-width: 70ch;
+      font-size:13.5px;
+      color: rgba(11,18,32,.66);
     }
 
-    /* Cards */
-    .grid-2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
-    .grid-3{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px; }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
     @media (max-width: 980px){
-      .grid-2,.grid-3{ grid-template-columns: 1fr; }
+      .hero{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
     }
 
     .card{
+      border:1px solid rgba(11,18,32,.10);
       border-radius: var(--radius);
-      background: rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.10);
-      padding:18px;
-      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+      background: #fff;
+      padding:16px;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease), border-color .2s var(--ease);
     }
     .card:hover{
       transform: translateY(-2px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(125,182,255,.22);
+      border-color: rgba(11,18,32,.16);
+      box-shadow: 0 16px 46px rgba(11,18,32,.08);
     }
     .card h3{
-      margin:0 0 10px;
-      font-size:16px;
+      margin:0 0 8px;
+      font-size:14.5px;
       letter-spacing:-.2px;
     }
-    .card p{ margin:0; color: rgba(255,255,255,.78); font-size:13.5px; }
-
-    .list{
-      margin:14px 0 0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-    }
-    .list li{
-      display:flex; gap:10px; align-items:flex-start;
-      color: rgba(255,255,255,.82);
+    .card p{
+      margin:0;
       font-size:13.5px;
-    }
-    .check{
-      width:18px; height:18px; border-radius:8px;
-      background: rgba(125,182,255,.18);
-      border:1px solid rgba(125,182,255,.28);
-      flex:0 0 auto;
-      display:inline-flex; align-items:center; justify-content:center;
-      margin-top:1px;
-    }
-    .check:before{
-      content:"";
-      width:8px; height:5px;
-      border-left:2px solid var(--accent2);
-      border-bottom:2px solid var(--accent2);
-      transform: rotate(-45deg);
-      display:block;
-      margin-top:-1px;
+      color: rgba(11,18,32,.66);
     }
 
-    /* System stack */
-    .system{
-      border-radius: var(--radius2);
-      padding:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      position:relative;
-      overflow:hidden;
-    }
-    .system:after{
-      content:"";
-      position:absolute; inset:-110px -260px auto auto;
-      width:520px; height:520px; border-radius:50%;
-      background: radial-gradient(circle at 30% 30%, rgba(125,182,255,.18), transparent 62%);
-      pointer-events:none;
-      transform: rotate(10deg);
-    }
-    .system-grid{
-      position:relative; z-index:1;
+    /* How it works */
+    .steps{
       display:grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
-      gap:12px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .steps{ grid-template-columns: 1fr; }
     }
     .step{
-      border-radius:16px;
-      background: rgba(7,18,37,.38);
-      border:1px solid rgba(255,255,255,.10);
-      padding:14px;
-      min-height: 130px;
+      border:1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      padding:16px;
+      background: var(--bg2);
     }
-    .step .tag{
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      color: rgba(255,255,255,.72);
+    .step .num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      background: #fff;
+      border:1px solid rgba(11,18,32,.12);
+      font-weight:700;
+      font-size:13px;
+      margin-bottom:10px;
     }
     .step b{
       display:block;
-      margin-top:6px;
-      font-size:15px;
-      letter-spacing:-.2px;
+      margin-bottom:6px;
+      font-size:14px;
     }
-    .step p{
-      margin:8px 0 0;
-      color: rgba(255,255,255,.76);
-      font-size:12.8px;
+    .step span{
+      display:block;
+      font-size:13.5px;
+      color: rgba(11,18,32,.66);
     }
-    .system-foot{
-      position:relative; z-index:1;
-      margin-top:12px;
+
+    /* Bottom CTA */
+    .bottom-cta{
+      margin:52px 0 10px;
+      padding:18px 18px;
+      border-radius: 20px;
+      border:1px solid rgba(31,111,235,.22);
+      background: linear-gradient(180deg, rgba(31,111,235,.08), rgba(255,255,255,1));
       display:flex;
-      gap:12px;
-      flex-wrap:wrap;
       align-items:center;
       justify-content:space-between;
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:12px;
-      color: rgba(255,255,255,.76);
-      font-size:13px;
+      gap:16px;
+      flex-wrap:wrap;
     }
-    .system-foot .mini{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
-    .mini .pill{ background: rgba(255,255,255,.04); }
-
-    @media (max-width: 980px){
-      .system-grid{ grid-template-columns: 1fr; }
-    }
-
-    /* Proof */
-    .proof{
-      border-radius: var(--radius2);
-      padding:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-    }
-    .proof-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
-    }
-    .proof-card{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(7,18,37,.34);
-      padding:14px;
-      min-height: 120px;
-    }
-    .proof-card .label{
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.8px;
-      color: rgba(255,255,255,.70);
-    }
-    .proof-card b{
-      display:block;
-      margin-top:6px;
+    .bottom-cta h3{
+      margin:0;
       font-size:16px;
       letter-spacing:-.2px;
     }
-    .proof-card p{
-      margin:8px 0 0;
-      color: rgba(255,255,255,.76);
-      font-size:12.8px;
-    }
-    @media (max-width: 980px){
-      .proof-grid{ grid-template-columns: 1fr; }
+    .bottom-cta p{
+      margin:6px 0 0;
+      color: rgba(11,18,32,.66);
+      font-size:13.5px;
+      max-width: 72ch;
     }
 
-    /* CTA block */
-    .cta{
-      border-radius: var(--radius2);
-      padding:22px;
-      border:1px solid rgba(125,182,255,.22);
-      background:
-        radial-gradient(1000px 500px at 20% 30%, rgba(125,182,255,.18), transparent 60%),
-        linear-gradient(180deg, rgba(125,182,255,.10), rgba(255,255,255,.03));
-      box-shadow: 0 20px 60px rgba(0,0,0,.25);
-      display:flex; align-items:center; justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .cta h3{ margin:0; font-size:20px; letter-spacing:-.3px; }
-    .cta p{ margin:6px 0 0; color: rgba(255,255,255,.80); font-size:13.5px; max-width:72ch; }
-    .cta .actions{ display:flex; gap:10px; flex-wrap:wrap; }
-
-    /* Footer */
     footer{
-      border-top:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      padding:26px 0;
-      color: rgba(255,255,255,.72);
+      padding:24px 0 34px;
+      color: rgba(11,18,32,.56);
       font-size:12.5px;
+      border-top:1px solid rgba(11,18,32,.08);
+      background:#fff;
     }
     .foot{
-      display:flex; justify-content:space-between; align-items:flex-start;
-      gap:16px; flex-wrap:wrap;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:flex-start;
     }
-    .foot .cols{ display:flex; gap:22px; flex-wrap:wrap; }
-    .foot a{ color: rgba(255,255,255,.74); }
-    .foot a:hover{ color:#fff; }
-
-    /* Accessibility */
-    .skip{
-      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
-    }
-    .skip:focus{
-      left:16px; top:16px; width:auto; height:auto;
-      padding:10px 12px; border-radius:12px;
-      background: rgba(125,182,255,.18);
-      border:1px solid rgba(125,182,255,.35);
-      z-index:999;
-    }
+    .foot a{ color: var(--accent); }
   </style>
 </head>
 
 <body>
-  <a class="skip" href="#content">Skip to content</a>
-
   <header>
     <div class="wrap">
       <div class="nav">
-        <a class="brand" href="index.html" aria-label="Robert Simpson Golf Home">
-          <div class="mark" aria-hidden="true"></div>
-          <div>
+
+        <a class="brand" href="index.html" aria-label="Home">
+          <div class="logos" aria-hidden="true">
+            <!-- Club + TGA logo (subtle, not dominating) -->
+            <img src="LogoBlue.png" alt="" />
+            <img src="2022-TGA-Logo-RGB-Athletics.jpeg" alt="" />
+          </div>
+          <div class="brand-text">
             <b>Robert Simpson Golf</b>
-            <span>High-Performance Player Development</span>
+            <span>Director of Instruction, Springfield Golf &amp; Country Club</span>
           </div>
         </a>
 
         <nav aria-label="Primary navigation">
           <ul>
-            <li><a class="active" href="index.html">Home</a></li>
+            <li><a class="active" href="index.html">Instruction</a></li>
+            <li><a href="academy.html">Academy</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="instruction.html">Instruction</a></li>
-            <li><a href="academy.html">SGCC Academy</a></li>
-            <li><a href="tga.html">TGA of Fairfax</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </nav>
 
-        <div class="nav-cta">
-          <a class="btn ghost menu-toggle" href="contact.html" aria-label="Open menu (mobile)">Menu</a>
-          <a class="btn ghost" href="instruction.html">Explore Pathway</a>
+        <div class="cta">
+          <a class="btn menu-toggle" href="contact.html">Menu</a>
           <a class="btn primary" href="contact.html">Book</a>
         </div>
+
       </div>
     </div>
   </header>
 
-  <main id="content">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="wrap">
-        <div class="hero-grid">
-          <div>
-            <h1>Structured Development. Measurable Progress. Long-Term Impact.</h1>
-            <p class="lede">
-              PGA Professional, Director of Instruction at Springfield Golf and Country Club.
-              Coaching built on clear baselines, clear priorities, and training that transfers to the course.
-            </p>
+  <main>
+    <div class="wrap">
 
-            <div class="meta" aria-label="Positioning highlights">
-              <span class="pill"><i></i>Ball flight cause and effect</span>
-              <span class="pill"><i></i>Scoring systems</span>
-              <span class="pill"><i></i>Junior pathway design</span>
-              <span class="pill"><i></i>Testing and retesting</span>
-            </div>
-
-            <div class="hero-actions">
-              <a class="btn primary" href="contact.html">Book a Lesson</a>
-              <a class="btn" href="instruction.html">See the System</a>
-              <a class="btn ghost" href="about.html">Professional Bio</a>
-            </div>
-          </div>
-
-          <aside class="hero-card" aria-label="Authority snapshot">
-            <div class="kpi">
-              <div class="tile">
-                <b>Director</b>
-                <span>Instruction, SGCC</span>
-              </div>
-              <div class="tile">
-                <b>PGA</b>
-                <span>Professional</span>
-              </div>
-              <div class="tile">
-                <b>800+</b>
-                <span>Private lessons yearly</span>
-              </div>
-              <div class="tile">
-                <b>Pathway</b>
-                <span>Juniors and adults</span>
-              </div>
-            </div>
-            <div class="note">
-              <b>What you get.</b>
-              A plan with standards, checkpoints, and priorities that show up on the course, not just on the range.
-            </div>
-            <a class="btn" href="contact.html" style="align-self:flex-start;">Start with an Assessment</a>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <!-- AUTHORITY STRIP -->
-    <section class="strip" aria-label="Authority strip">
-      <div class="wrap">
-        <div class="strip-grid">
-          <div class="strip-item"><strong>PGA Professional</strong></div>
-          <div class="strip-item"><strong>Director of Instruction</strong>, Springfield Golf and Country Club</div>
-          <div class="strip-item"><strong>Junior Development</strong>, pathway-based training</div>
-          <div class="strip-item"><strong>Adult Coaching</strong>, scoring-first systems</div>
-          <div class="strip-item"><strong>Performance Testing</strong>, baselines and retests</div>
-          <div class="strip-item"><strong>Owner</strong>, TGA of Fairfax</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE SYSTEM (THIS IS THE DIFFERENTIATOR) -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>The Coaching System</h2>
-            <p>
-              You are not buying a tip. You are buying clarity.
-              Baseline, plan, training block, checkpoints, and progress that holds under pressure.
-            </p>
-          </div>
-          <a class="btn" href="instruction.html">Full Framework</a>
-        </div>
-
-        <div class="system" aria-label="Coaching system stack">
-          <div class="system-grid">
-            <div class="step">
-              <div class="tag">Step 1</div>
-              <b>Assess</b>
-              <p>Baseline skills, shot pattern, scoring profile, and goals.</p>
-            </div>
-            <div class="step">
-              <div class="tag">Step 2</div>
-              <b>Build</b>
-              <p>One clear priority, one plan, and a training block that fits your schedule.</p>
-            </div>
-            <div class="step">
-              <div class="tag">Step 3</div>
-              <b>Measure</b>
-              <p>Benchmarks, retests, and feedback loops so you know what is changing.</p>
-            </div>
-            <div class="step">
-              <div class="tag">Step 4</div>
-              <b>Perform</b>
-              <p>Transfer training, on-course decisions, routines, and pressure reps.</p>
-            </div>
-            <div class="step">
-              <div class="tag">Step 5</div>
-              <b>Sustain</b>
-              <p>Season planning and maintenance so progress does not disappear.</p>
-            </div>
-          </div>
-
-          <div class="system-foot">
-            <div>Most players fail because they train without a map. This fixes that.</div>
-            <div class="mini">
-              <span class="pill"><i></i>Skill benchmarks</span>
-              <span class="pill"><i></i>Practice plans</span>
-              <span class="pill"><i></i>Course strategy</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHAT I COACH (OUTCOME BUCKETS) -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>Who This Is For</h2>
-            <p>Simple buckets, clear outcomes, and a path to start.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>Competitive Juniors</h3>
-            <p>Technical development, scoring systems, and routines built for tournaments.</p>
-          </div>
-          <div class="card">
-            <h3>Serious Club Golfers</h3>
-            <p>Lower scores through shot pattern control, wedges, putting, and decisions.</p>
-          </div>
-          <div class="card">
-            <h3>New and Improving Players</h3>
-            <p>Build fundamentals correctly, then train simple skills that drop strokes fast.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROOF (PLACEHOLDERS YOU CAN FILL IN) -->
-    <section>
-      <div class="wrap">
-        <div class="section-head">
-          <div>
-            <h2>Proof and Outcomes</h2>
-            <p>Replace these with your best real examples. Five strong results beat twenty vague testimonials.</p>
-          </div>
-          <a class="btn" href="about.html">More Background</a>
-        </div>
-
-        <div class="proof">
-          <div class="proof-grid">
-            <div class="proof-card">
-              <div class="label">Handicap drops</div>
-              <b>Example: 12.4 to 7.1</b>
-              <p>Focus: face control, wedges, and decisions.</p>
-            </div>
-            <div class="proof-card">
-              <div class="label">Junior scoring</div>
-              <b>Example: 92 to 83</b>
-              <p>Focus: driver pattern, short game tests, course plan.</p>
-            </div>
-            <div class="proof-card">
-              <div class="label">Skill benchmarks</div>
-              <b>Example: wedge dispersion cut in half</b>
-              <p>Focus: distance control and strike.</p>
-            </div>
-          </div>
-
-          <p style="margin:12px 2px 0; color:rgba(255,255,255,.75); font-size:13px;">
-            Want this section to hit harder, send me 6 real wins and I will rewrite it with numbers and no fluff.
+      <!-- HERO (Proponent-style: clarity + proof + booking) -->
+      <div class="hero">
+        <div>
+          <p class="kicker">Instruction and player development</p>
+          <h1>Clear coaching. Measurable progress. Better golf that shows up on the course.</h1>
+          <p class="lede">
+            PGA Professional and Director of Instruction at Springfield Golf &amp; Country Club.
+            I coach juniors and adults with a structured plan, simple priorities, and checkpoints that prove you're improving.
           </p>
-        </div>
-      </div>
-    </section>
 
-    <!-- GROWTH OF THE GAME (TGA SUPPORTS AUTHORITY, KEEP IT TIGHT) -->
-    <section>
-      <div class="wrap">
+          <div class="proof" aria-label="Proof points">
+            <span class="chip"><span class="dot" aria-hidden="true"></span>800+ private lessons annually</span>
+            <span class="chip"><span class="dot" aria-hidden="true"></span>Junior pathway systems</span>
+            <span class="chip"><span class="dot" aria-hidden="true"></span>Ball flight cause &amp; effect</span>
+            <span class="chip"><span class="dot" aria-hidden="true"></span>Scoring-focused training</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="btn primary" href="contact.html">Book</a>
+            <a class="btn" href="academy.html">View Academy</a>
+          </div>
+
+          <div class="micro">
+            Prefer email? <a href="contact.html">Send a message</a>. Want a quick fit check? Book a 15-minute consult.
+          </div>
+        </div>
+
+        <aside class="portrait" aria-label="Robert Simpson photo">
+          <img src="64B34E43-813A-4DC3-A811-67FAB8FCA6D3.jpeg" alt="Robert Simpson holding a GRAA award." />
+          <div class="caption"><b>GRAA recognition</b>, growth of the game and player development leadership.</div>
+        </aside>
+      </div>
+
+      <!-- WHAT I DO (simple, 3 cards) -->
+      <section aria-label="What I do">
         <div class="section-head">
           <div>
-            <h2>Growth of the Game</h2>
-            <p>
-              I build players, and I build programs.
-              TGA of Fairfax brings structured coaching to schools and communities, then feeds into deeper training for families who want more.
-            </p>
-          </div>
-          <a class="btn" href="tga.html">TGA Overview</a>
-        </div>
-
-        <div class="grid-3">
-          <div class="card">
-            <h3>School Partnerships</h3>
-            <p>Curriculum-based programs that create real skill, not babysitting.</p>
-          </div>
-          <div class="card">
-            <h3>Community Entry Points</h3>
-            <p>First swing to first season, with standards and clear next steps.</p>
-          </div>
-          <div class="card">
-            <h3>Junior Pipeline</h3>
-            <p>Beginner to competitive, then into high performance training.</p>
+            <h2>What I coach</h2>
+            <p>Simple lanes. Clear expectations. The right plan for where you are right now.</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA -->
-    <section>
-      <div class="wrap">
-        <div class="cta" role="region" aria-label="Primary call to action">
+        <div class="grid">
+          <div class="card">
+            <h3>Private Lessons</h3>
+            <p>One clear priority at a time. Built around your pattern, your goals, and your schedule.</p>
+          </div>
+          <div class="card">
+            <h3>Junior Development</h3>
+            <p>Long-term pathway, skill benchmarks, and training blocks that build confident competitors.</p>
+          </div>
+          <div class="card">
+            <h3>Scoring and Strategy</h3>
+            <p>Wedges, putting, course management, and routines that reduce big numbers.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS (Proponent-style: baseline -> plan -> train/retest) -->
+      <section aria-label="How it works">
+        <div class="section-head">
           <div>
-            <h3>Ready for a plan you can trust?</h3>
-            <p>Start with an assessment. We set baselines, define priorities, and map the next training block with checkpoints.</p>
-          </div>
-          <div class="actions">
-            <a class="btn primary" href="contact.html">Book a Lesson</a>
-            <a class="btn" href="instruction.html">Explore Pathway</a>
+            <h2>How it works</h2>
+            <p>Coaching should feel clear. This is the system.</p>
           </div>
         </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <b>Baseline</b>
+            <span>Assess your pattern, your ball flight, and your current scoring profile.</span>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <b>Plan</b>
+            <span>Set priorities and build a practice plan that fits real life, not theory.</span>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <b>Train and Retest</b>
+            <span>Track progress, adjust quickly, and verify results on the course.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIMPLE CTA -->
+      <div class="bottom-cta" role="region" aria-label="Book call to action">
+        <div>
+          <h3>Ready to get a clear plan?</h3>
+          <p>Book a lesson or a short consult. We will define the priority, set checkpoints, and start moving the needle fast.</p>
+        </div>
+        <div>
+          <a class="btn primary" href="contact.html">Book</a>
+        </div>
       </div>
-    </section>
+
+    </div>
   </main>
 
   <footer>
     <div class="wrap">
       <div class="foot">
         <div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:11px;"></div>
-            <div>
-              <div style="font-weight:750; letter-spacing:.4px; text-transform:uppercase; font-size:12px; color:#fff;">Robert Simpson Golf</div>
-              <div style="margin-top:2px;">Private club standards, measurable development, long-term results</div>
-            </div>
-          </div>
+          © <span id="y"></span> robertsimpsongolf.com
+          <div style="margin-top:6px;">Springfield Golf &amp; Country Club, Springfield, VA</div>
         </div>
-
-        <div class="cols" aria-label="Footer links">
-          <div>
-            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Explore</div>
-            <div><a href="instruction.html">Instruction</a></div>
-            <div><a href="academy.html">SGCC Academy</a></div>
-            <div><a href="tga.html">TGA of Fairfax</a></div>
-          </div>
-          <div>
-            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Connect</div>
-            <div><a href="contact.html">Book / Contact</a></div>
-            <div><a href="about.html">Professional Bio</a></div>
-          </div>
+        <div>
+          <a href="contact.html">Book</a>
         </div>
-      </div>
-
-      <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.08); padding-top:14px;">
-        <div>© <span id="y"></span> robertsimpsongolf.com</div>
-        <div style="color:rgba(255,255,255,.62);">Structured development, measurable progress, long-term impact</div>
       </div>
     </div>
   </footer>
