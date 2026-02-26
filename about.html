@@ -1,42 +1,403 @@
-<!DOCTYPE html>
+<!-- =========================
+     about.html
+========================= -->
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Robert Simpson Golf</title>
+  <meta name="description" content="Professional profile for Robert Simpson, PGA Professional and Director of Instruction at Springfield Golf & Country Club." />
+
+  <style>
+    :root{
+      --navy-950:#071225;
+      --navy-900:#0a1a33;
+      --line:rgba(255,255,255,.10);
+      --card:rgba(255,255,255,.06);
+      --white:#ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:28px;
+      --max:1180px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --accent:#7db6ff;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+      color:var(--white);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(125,182,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(125,182,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--navy-950), var(--navy-900) 55%, #06101f 100%);
+      line-height:1.45;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(7,18,37,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:220px; }
+    .mark{
+      width:40px; height:40px; border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(125,182,255,.9), rgba(125,182,255,.18));
+      box-shadow: 0 12px 30px rgba(125,182,255,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand b{ letter-spacing:.5px; font-size:14px; text-transform:uppercase; }
+    .brand span{ display:block; font-size:12px; color:rgba(255,255,255,.72); margin-top:1px; }
+
+    nav ul{ list-style:none; display:flex; gap:18px; padding:0; margin:0; align-items:center; }
+    nav a{
+      font-size:13px; color:rgba(255,255,255,.80);
+      padding:10px 10px; border-radius:12px;
+      transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+    }
+    nav a:hover{ background:rgba(255,255,255,.06); color:#fff; transform: translateY(-1px); }
+    .active{ background:rgba(125,182,255,.12) !important; color:#fff !important; border:1px solid rgba(125,182,255,.20); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px; border-radius:14px;
+      font-weight:650; font-size:13px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+      white-space:nowrap;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(125,182,255,.95), rgba(125,182,255,.35));
+      border-color: rgba(125,182,255,.55);
+      box-shadow: 0 18px 40px rgba(125,182,255,.20);
+      color:#071225;
+    }
+
+    /* Mobile menu */
+    .menu-toggle{ display:none; }
+    .mobile-panel{ display:none; padding:0 0 14px; }
+    .mobile-panel .panel-inner{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:12px;
+    }
+    .mobile-links{
+      display:grid; gap:8px;
+      margin:0; padding:0; list-style:none;
+    }
+    .mobile-links a{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      color:rgba(255,255,255,.88);
+      font-size:13px;
+      transition: background .25s var(--ease), transform .25s var(--ease), border-color .25s var(--ease);
+    }
+    .mobile-links a:hover{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.16);
+      transform: translateY(-1px);
+    }
+    .mobile-cta{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+
+    @media (max-width: 980px){
+      nav ul{ display:none; }
+      .menu-toggle{ display:inline-flex; }
+      .mobile-panel.open{ display:block; }
+    }
+
+    main{ padding:56px 0 34px; }
+    .page-title{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.80);
+      max-width: 72ch;
+      font-size:14px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){ .layout{ grid-template-columns: 1fr; } }
+
+    .panel{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .panel p{ margin:0; color: rgba(255,255,255,.78); font-size:13.5px; }
+
+    .bullets{
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .bullets li{
+      display:flex; gap:10px; align-items:flex-start;
+      color: rgba(255,255,255,.84);
+      font-size:13.5px;
+    }
+    .dot{
+      width:18px; height:18px; border-radius:8px;
+      background: rgba(125,182,255,.16);
+      border:1px solid rgba(125,182,255,.26);
+      flex:0 0 auto;
+      margin-top:1px;
+      position:relative;
+    }
+    .dot:before{
+      content:"";
+      position:absolute; inset:5px;
+      border-radius:6px;
+      background: rgba(125,182,255,.55);
+      box-shadow: 0 0 0 6px rgba(125,182,255,.10);
+    }
+
+    .media-grid{ display:grid; grid-template-columns:1fr; gap:12px; }
+    .ph{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(700px 260px at 25% 35%, rgba(125,182,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      min-height: 240px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ph.small{ min-height: 180px; }
+    .ph-label{
+      position:absolute; left:14px; bottom:12px;
+      font-size:12px;
+      color: rgba(255,255,255,.74);
+      background: rgba(7,18,37,.55);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding:26px 0;
+      color: rgba(255,255,255,.72);
+      font-size:12.5px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:16px; flex-wrap:wrap;
+    }
+    .foot a{ color: rgba(255,255,255,.74); }
+    .foot a:hover{ color:#fff; }
+
+    .sr-only{
+      position:absolute; width:1px; height:1px;
+      padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0);
+      white-space:nowrap; border:0;
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1>About Me</h1>
-        <nav>
-            <ul>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#media">Media</a></li>
-                <li><a href="#bio">Bio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Robert Simpson Golf Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <b>Robert Simpson Golf</b>
+            <span>High-Performance Player Development</span>
+          </div>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="about.html" aria-current="page">About</a></li>
+            <li><a href="instruction.html">Instruction</a></li>
+            <li><a href="academy.html">SGCC Academy</a></li>
+            <li><a href="tga.html">TGA of Fairfax</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </nav>
-    </header>
-    <section id="profile">
-        <h2>Professional Profile</h2>
-        <p>Welcome to my professional profile. Here you can learn about my skills, experience, and projects.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque ligula sapien, a ultricies diam gravida a.</p>
-    </section>
-    <section id="media">
-        <h2>Media</h2>
-        <div class="media-grid">
-            <div class="media-item">Image 1</div>
-            <div class="media-item">Image 2</div>
-            <div class="media-item">Image 3</div>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="btn menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
+            Menu
+            <span class="sr-only">Open navigation</span>
+          </button>
+          <a class="btn" href="instruction.html">Coaching Framework</a>
+          <a class="btn primary" href="contact.html">Book</a>
         </div>
-    </section>
-    <section id="bio">
-        <h2>Bio</h2>
-        <p>Here is my bio. I have been working in the industry for over 10 years...</p>
-    </section>
-    <footer>
-        <p>&copy; 2026 robertsimpson-debug. All rights reserved.</p>
-    </footer>
+      </div>
+
+      <div class="mobile-panel" id="mobileMenu">
+        <div class="panel-inner">
+          <ul class="mobile-links" aria-label="Mobile navigation">
+            <li><a href="index.html">Home <span aria-hidden="true">›</span></a></li>
+            <li><a href="about.html">About <span aria-hidden="true">›</span></a></li>
+            <li><a href="instruction.html">Instruction <span aria-hidden="true">›</span></a></li>
+            <li><a href="academy.html">SGCC Academy <span aria-hidden="true">›</span></a></li>
+            <li><a href="tga.html">TGA of Fairfax <span aria-hidden="true">›</span></a></li>
+            <li><a href="contact.html">Contact <span aria-hidden="true">›</span></a></li>
+          </ul>
+
+          <div class="mobile-cta">
+            <a class="btn" href="instruction.html">Coaching Framework</a>
+            <a class="btn primary" href="contact.html">Book</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="page-title">
+        <div>
+          <h1>About Robert</h1>
+          <p class="sub">
+            PGA Professional and Director of Instruction at Springfield Golf &amp; Country Club. I build clear development plans for juniors and adults, with standards that transfer to the course.
+          </p>
+        </div>
+        <a class="btn primary" href="contact.html">Book a Lesson</a>
+      </div>
+
+      <div class="layout">
+        <!-- Left: images -->
+        <div class="media-grid" aria-label="Images">
+          <div class="ph" role="img" aria-label="Headshot placeholder">
+            <div class="ph-label">Add Headshot</div>
+          </div>
+          <div class="ph small" role="img" aria-label="Coaching action placeholder">
+            <div class="ph-label">Add Coaching Photo</div>
+          </div>
+        </div>
+
+        <!-- Right: clean bio -->
+        <div class="panel">
+          <h2>Professional Profile</h2>
+          <p>
+            I’m the Director of Instruction at Springfield Golf &amp; Country Club in Virginia, where I lead instruction, junior programming, and academy standards across private lessons and group development pathways.
+          </p>
+
+          <p style="margin-top:12px;">
+            I also own TGA of Fairfax, a youth sports company delivering golf, tennis, pickleball, and soccer programs through school and community partnerships across Northern Virginia.
+          </p>
+
+          <ul class="bullets">
+            <li><span class="dot" aria-hidden="true"></span><div><b>Coaching focus:</b> ball flight control, scoring skills, and practice structure that produces on-course results.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Junior development:</b> clear levels, measurable benchmarks, and pathways into competitive play.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Adult development:</b> strategy, wedges, short game, and course management built around your goals.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Program building:</b> academy systems that scale while keeping coaching quality consistent.</div></li>
+          </ul>
+
+          <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="instruction.html">Instruction Model</a>
+            <a class="btn" href="academy.html">SGCC Academy</a>
+            <a class="btn" href="contact.html">Contact</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:11px;"></div>
+          <div>
+            <div style="font-weight:750; letter-spacing:.4px; text-transform:uppercase; font-size:12px; color:#fff;">Robert Simpson Golf</div>
+            <div style="margin-top:2px;">Director of Instruction • Player development • Program standards</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:22px; flex-wrap:wrap;">
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Explore</div>
+            <div><a href="instruction.html">Instruction</a></div>
+            <div><a href="academy.html">SGCC Academy</a></div>
+            <div><a href="tga.html">TGA of Fairfax</a></div>
+          </div>
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Connect</div>
+            <div><a href="contact.html">Book / Contact</a></div>
+            <div><a href="index.html">Home</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.08); padding-top:14px;">
+        <div>© <span id="y"></span> robertsimpsongolf.com</div>
+        <div style="color:rgba(255,255,255,.62);">Structured development • Measurable progress • Long-term impact</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    (function(){
+      const btn = document.getElementById('menuBtn');
+      const panel = document.getElementById('mobileMenu');
+      if(!btn || !panel) return;
+
+      function setOpen(isOpen){
+        btn.setAttribute('aria-expanded', String(isOpen));
+        panel.classList.toggle('open', isOpen);
+      }
+
+      btn.addEventListener('click', function(){
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        setOpen(!isOpen);
+      });
+
+      panel.addEventListener('click', function(e){
+        const t = e.target;
+        if(t && t.tagName === 'A') setOpen(false);
+      });
+
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape') setOpen(false);
+      });
+    })();
+  </script>
 </body>
 </html>
