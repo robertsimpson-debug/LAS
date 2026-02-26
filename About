@@ -1,0 +1,351 @@
+<!-- =========================
+     about.html
+========================= -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Robert Simpson Golf</title>
+  <meta name="description" content="Professional bio for Robert Simpson: PGA Professional, Director of Instruction, youth development leader, and structured performance coach." />
+
+  <style>
+    :root{
+      --navy-950:#071225;
+      --navy-900:#0a1a33;
+      --ink:#0b1220;
+      --muted:#5c6b84;
+      --line:rgba(255,255,255,.10);
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.04);
+      --accent:#7db6ff;
+      --accent2:#a9d0ff;
+      --white:#ffffff;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:28px;
+      --max:1180px;
+      --ease:cubic-bezier(.2,.8,.2,1);
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", Helvetica, sans-serif;
+      color:var(--white);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(125,182,255,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 0%, rgba(125,182,255,.12), transparent 55%),
+        linear-gradient(180deg, var(--navy-950), var(--navy-900) 55%, #06101f 100%);
+      line-height:1.45;
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
+
+    header{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background: rgba(7,18,37,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 0; gap:16px; }
+    .brand{ display:flex; align-items:center; gap:12px; min-width:220px; }
+    .mark{
+      width:40px; height:40px; border-radius:12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(125,182,255,.9), rgba(125,182,255,.18));
+      box-shadow: 0 12px 30px rgba(125,182,255,.18);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .brand b{ letter-spacing:.5px; font-size:14px; text-transform:uppercase; }
+    .brand span{ display:block; font-size:12px; color:rgba(255,255,255,.72); margin-top:1px; }
+
+    nav ul{ list-style:none; display:flex; gap:18px; padding:0; margin:0; align-items:center; }
+    nav a{
+      font-size:13px; color:rgba(255,255,255,.80);
+      padding:10px 10px; border-radius:12px;
+      transition: background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+    }
+    nav a:hover{ background:rgba(255,255,255,.06); color:#fff; transform: translateY(-1px); }
+    .active{ background:rgba(125,182,255,.12) !important; color:#fff !important; border:1px solid rgba(125,182,255,.20); }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px; border-radius:14px;
+      font-weight:650; font-size:13px;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+      transition: transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.22); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(125,182,255,.95), rgba(125,182,255,.35));
+      border-color: rgba(125,182,255,.55);
+      box-shadow: 0 18px 40px rgba(125,182,255,.20);
+      color:#071225;
+    }
+
+    .menu-toggle{ display:none; }
+    @media (max-width: 980px){
+      nav ul{ display:none; }
+      .menu-toggle{ display:inline-flex; }
+    }
+
+    main{ padding:56px 0 34px; }
+    .page-title{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:16px; flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.6vw, 46px);
+      line-height:1.08;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.80);
+      max-width: 72ch;
+      font-size:14px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){ .layout{ grid-template-columns: 1fr; } }
+
+    .panel{
+      border-radius: var(--radius2);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:18px;
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .panel p{ margin:0; color: rgba(255,255,255,.78); font-size:13.5px; }
+    .bullets{
+      margin:14px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+    .bullets li{
+      display:flex; gap:10px; align-items:flex-start;
+      color: rgba(255,255,255,.84);
+      font-size:13.5px;
+    }
+    .dot{
+      width:18px; height:18px; border-radius:8px;
+      background: rgba(125,182,255,.16);
+      border:1px solid rgba(125,182,255,.26);
+      flex:0 0 auto;
+      margin-top:1px;
+      position:relative;
+    }
+    .dot:before{
+      content:"";
+      position:absolute; inset:5px;
+      border-radius:6px;
+      background: rgba(125,182,255,.55);
+      box-shadow: 0 0 0 6px rgba(125,182,255,.10);
+    }
+
+    .media-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .ph{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(700px 260px at 25% 35%, rgba(125,182,255,.18), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      min-height: 240px;
+      position:relative;
+      overflow:hidden;
+    }
+    .ph.small{ min-height: 180px; }
+    .ph-label{
+      position:absolute; left:14px; bottom:12px;
+      font-size:12px;
+      color: rgba(255,255,255,.74);
+      background: rgba(7,18,37,.55);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 10px;
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+    }
+
+    .quote{
+      margin-top:14px;
+      padding:16px;
+      border-radius: var(--radius);
+      border:1px dashed rgba(125,182,255,.35);
+      background: rgba(125,182,255,.08);
+      color: rgba(255,255,255,.88);
+      font-size:13.5px;
+    }
+    .quote b{ color:#fff; }
+
+    footer{
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      padding:26px 0;
+      color: rgba(255,255,255,.72);
+      font-size:12.5px;
+    }
+    .foot{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:16px; flex-wrap:wrap;
+    }
+    .foot a{ color: rgba(255,255,255,.74); }
+    .foot a:hover{ color:#fff; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Robert Simpson Golf Home">
+          <div class="mark" aria-hidden="true"></div>
+          <div>
+            <b>Robert Simpson Golf</b>
+            <span>High-Performance Player Development</span>
+          </div>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="about.html">About</a></li>
+            <li><a href="instruction.html">Instruction</a></li>
+            <li><a href="academy.html">SGCC Academy</a></li>
+            <li><a href="tga.html">TGA of Fairfax</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center;">
+          <a class="btn menu-toggle" href="contact.html">Menu</a>
+          <a class="btn" href="instruction.html">Coaching Framework</a>
+          <a class="btn primary" href="contact.html">Book</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="page-title">
+        <div>
+          <h1>Professional Profile</h1>
+          <p class="sub">
+            Robert Simpson is a PGA Professional and Director of Instruction at Springfield Golf &amp; Country Club, building structured player pathways and scalable youth development systems designed for measurable progress.
+          </p>
+        </div>
+        <a class="btn primary" href="contact.html">Book a Lesson</a>
+      </div>
+
+      <div class="layout">
+        <!-- Left: media placeholders -->
+        <div class="media-grid" aria-label="Image placeholders">
+          <div class="ph" role="img" aria-label="Headshot placeholder">
+            <div class="ph-label">Headshot Placeholder (Add Professional Portrait)</div>
+          </div>
+          <div class="ph small" role="img" aria-label="Coaching action placeholder">
+            <div class="ph-label">Coaching Action Placeholder (Practice / On-Course)</div>
+          </div>
+
+          <div class="quote">
+            <b>Positioning statement:</b> A structured, data-driven development coach with academy-level systems—built to elevate athletes, strengthen communities, and scale participation through standards.
+          </div>
+        </div>
+
+        <!-- Right: authority bio -->
+        <div class="panel">
+          <h2>Bio (Award-Committee Ready)</h2>
+          <p>
+            Robert Simpson operates at the intersection of performance coaching and program architecture. His work is defined by structure: clear player pathways, measurable training standards, and scalable systems that elevate both individual development and community participation.
+          </p>
+
+          <ul class="bullets">
+            <li><span class="dot" aria-hidden="true"></span><div><b>PGA Professional</b> with a modern, performance-based coaching approach focused on long-term athlete development and transferable skill acquisition.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Director of Instruction</b> at Springfield Golf &amp; Country Club, leading academy programming, standards, coach alignment, and player development pathways.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Youth academy architect</b> designing structured junior progression: foundation, development, competitive readiness, and high performance.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Adult player development framework</b> built around scoring strategy, ball flight control, and practice models designed for on-course transfer.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Measurable results focus</b> using benchmarks, skill testing, progress reviews, and training blocks to drive consistent improvement.</div></li>
+            <li><span class="dot" aria-hidden="true"></span><div><b>Commitment to growth</b> through community programming and school partnerships that create access while maintaining high standards.</div></li>
+          </ul>
+
+          <div style="margin-top:16px; display:grid; gap:12px;">
+            <div class="panel" style="padding:16px; background: rgba(255,255,255,.03);">
+              <h2 style="margin:0 0 8px; font-size:16px;">Leadership Lens</h2>
+              <p style="margin:0;">
+                Systems scale. Robert’s focus is creating alignment across coaching language, training progressions, and performance expectations so players, parents, and programs share the same roadmap.
+              </p>
+            </div>
+
+            <div class="panel" style="padding:16px; background: rgba(255,255,255,.03);">
+              <h2 style="margin:0 0 8px; font-size:16px;">Community Growth</h2>
+              <p style="margin:0;">
+                Grassroots development requires more than events—it requires curriculum, coach training standards, and pathways that convert interest into long-term participation and performance.
+              </p>
+            </div>
+          </div>
+
+          <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="instruction.html">View Instruction Model</a>
+            <a class="btn" href="academy.html">Explore SGCC Academy</a>
+            <a class="btn" href="tga.html">Youth Sports Company</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="mark" aria-hidden="true" style="width:32px;height:32px;border-radius:11px;"></div>
+          <div>
+            <div style="font-weight:750; letter-spacing:.4px; text-transform:uppercase; font-size:12px; color:#fff;">Robert Simpson Golf</div>
+            <div style="margin-top:2px;">Director of Instruction • Academy systems • Growth of the game</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:22px; flex-wrap:wrap;">
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Explore</div>
+            <div><a href="instruction.html">Instruction</a></div>
+            <div><a href="academy.html">SGCC Academy</a></div>
+            <div><a href="tga.html">TGA of Fairfax</a></div>
+          </div>
+          <div>
+            <div style="color:#fff; font-weight:700; margin-bottom:8px;">Connect</div>
+            <div><a href="contact.html">Book / Contact</a></div>
+            <div><a href="index.html">Home</a></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:18px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; border-top:1px solid rgba(255,255,255,.08); padding-top:14px;">
+        <div>© <span id="y"></span> robertsimpsongolf.com</div>
+        <div style="color:rgba(255,255,255,.62);">Structured development • Measurable progress • Long-term impact</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
